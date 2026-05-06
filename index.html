@@ -67,8 +67,8 @@
     }
 
     /* ── NAV ── */
-    nav {
-      position: fixed;
+    #mainNav {
+      position: sticky;
       top: 0; left: 0; right: 0;
       z-index: 900;
       display: flex;
@@ -81,7 +81,7 @@
       transition: padding .3s, box-shadow .3s;
     }
 
-    nav.scrolled {
+    #mainNav.scrolled {
       padding: .7rem 4rem;
       box-shadow: 0 4px 40px rgba(0,0,0,.6);
     }
@@ -113,16 +113,16 @@
 
     .logo-text span { color: var(--gold); }
 
-    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    #mainNav ul { list-style: none; display: flex; gap: 2.5rem; }
 
-    nav a {
+    #mainNav a {
       text-decoration: none; color: var(--white);
       font-size: .7rem; letter-spacing: .18em;
       text-transform: uppercase; opacity: .7;
       transition: opacity .3s, color .3s;
     }
 
-    nav a:hover { opacity: 1; color: var(--gold); }
+    #mainNav a:hover { opacity: 1; color: var(--gold); }
 
     .nav-cta {
       display: flex; align-items: center; gap: .5rem;
@@ -956,6 +956,43 @@
     .reveal-delay-3 { transition-delay: .3s; }
     .reveal-delay-4 { transition-delay: .4s; }
 
+
+
+    /* ══════════════════════════════
+       AJUSTES DE USABILIDADE
+    ══════════════════════════════ */
+    img, svg { max-width: 100%; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    button, a { touch-action: manipulation; }
+
+    .price-row,
+    .contato-card,
+    .model-card,
+    .agendar-card {
+      min-width: 0;
+    }
+
+    @media (hover: none) {
+      .model-card:hover,
+      .contato-card:hover,
+      .btn-hero-primary:hover,
+      .btn-hero-secondary:hover,
+      .btn-gold:hover,
+      .btn-agendar:hover,
+      .btn-contato:hover {
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
     /* ══════════════════════════════
        RESPONSIVE
     ══════════════════════════════ */
@@ -964,8 +1001,16 @@
     }
 
     @media (max-width: 768px) {
-      nav { padding: .8rem 1.4rem; }
-      nav ul { display: none; }
+      .top-banner {
+        padding: .5rem .8rem;
+        font-size: .56rem;
+        line-height: 1.6;
+        letter-spacing: .14em;
+      }
+      .top-banner span { margin: 0 .35rem; }
+      #mainNav { padding: .8rem 1.2rem; }
+      #mainNav.scrolled { padding: .65rem 1.2rem; }
+      #mainNav ul { display: none; }
       .nav-cta { display: none; }
       .hamburger { display: flex; }
 
@@ -1010,6 +1055,22 @@
       .wa-float { bottom: 1.5rem; right: 1.2rem; width: 54px; height: 54px; }
     }
 
+
+    @media (max-width: 520px) {
+      .logo-icon { width: 40px; height: 40px; }
+      .logo-text { font-size: .95rem; letter-spacing: .08em; }
+      .hero-eyebrow { letter-spacing: .22em; font-size: .58rem; }
+      .hero-sub { font-size: .68rem; line-height: 1.7; }
+      .hero-title { line-height: .96; }
+      .stat-item { min-width: 100%; padding: 1.45rem 1rem; }
+      .price-row { align-items: flex-start; flex-direction: column; gap: .45rem; }
+      .price-badge { align-self: flex-start; }
+      .contato-grid { gap: 1rem; }
+      .map-embed { height: 180px; }
+      .mobile-menu { gap: 1.7rem; padding: 5rem 1.2rem 2rem; }
+      .mob-cta-btn { width: 100%; justify-content: center; }
+    }
+
     @media (max-width: 380px) {
       .hero-title { font-size: 2.8rem; }
       .logo-text { font-size: .9rem; }
@@ -1039,7 +1100,7 @@
     <li><a href="#precos">Preços</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20no%20Studio%20A.J%20Lashes!" class="nav-cta" target="_blank">
+  <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20no%20Studio%20A.J%20Lashes!" class="nav-cta" target="_blank" rel="noopener noreferrer">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Agendar
   </a>
@@ -1056,7 +1117,7 @@
   <a href="#precos"       class="mob-link">Preços</a>
   <a href="#contato"      class="mob-link">Contato</a>
   <div class="mobile-gold-line"></div>
-  <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20no%20Studio%20A.J%20Lashes!" class="mob-link mob-cta-btn" target="_blank">
+  <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20no%20Studio%20A.J%20Lashes!" class="mob-link mob-cta-btn" target="_blank" rel="noopener noreferrer">
     💬 Agendar Horário
   </a>
 </div>
@@ -1078,7 +1139,7 @@
   <p class="hero-sub">Cílios &amp; Sobrancelhas · Rio Branco – AC</p>
   <div class="hero-divider"></div>
   <div class="hero-btns">
-    <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20no%20Studio%20A.J%20Lashes!" class="btn-hero-primary" target="_blank">
+    <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20no%20Studio%20A.J%20Lashes!" class="btn-hero-primary" target="_blank" rel="noopener noreferrer">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Agendar Horário
     </a>
@@ -1168,7 +1229,7 @@
       <h3>Modelo <em>Personalizado</em></h3>
       <p>Não encontrou o que procura? Crie o seu próprio look! Converse com a nossa profissional e monte um modelo exclusivo para o seu rosto, estilo e ocasião. Cada detalhe pensado especialmente para você.</p>
     </div>
-    <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20criar%20um%20modelo%20personalizado%20de%20sobrancelhas." class="btn-gold" target="_blank">
+    <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20criar%20um%20modelo%20personalizado%20de%20sobrancelhas." class="btn-gold" target="_blank" rel="noopener noreferrer">
       ✦ Criar meu look
     </a>
   </div>
@@ -1274,7 +1335,7 @@
       <div class="contato-icon icon-green">💬</div>
       <h3>WhatsApp</h3>
       <p>Agende seu horário de forma rápida pelo WhatsApp. Atendemos com carinho e respondemos rápido!</p>
-      <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20no%20Studio%20A.J%20Lashes!" class="btn-contato btn-wa" target="_blank">
+      <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20no%20Studio%20A.J%20Lashes!" class="btn-contato btn-wa" target="_blank" rel="noopener noreferrer">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Chamar no WhatsApp
       </a>
@@ -1285,7 +1346,7 @@
       <div class="contato-icon icon-insta">📸</div>
       <h3>Instagram</h3>
       <p>Veja nosso portfólio, novidades e promoções exclusivas. Siga e fique por dentro de tudo!</p>
-      <a href="https://instagram.com/studioa.jlashes" class="btn-contato btn-ig" target="_blank">
+      <a href="https://instagram.com/studioa.jlashes" class="btn-contato btn-ig" target="_blank" rel="noopener noreferrer">
         ✦ @studioa.jlashes
       </a>
     </div>
@@ -1318,7 +1379,7 @@
       <p>Rio Branco – Acre, Brasil. Entre em contato para saber o endereço exato de atendimento.</p>
       <div class="map-embed">
         <span>📍</span>
-        Xapuri – AC, Brasil
+        Rio Branco – AC, Brasil
       </div>
     </div>
   </div>
@@ -1337,7 +1398,7 @@
       <p>
         Agende seu horário de forma rápida e prática pelo WhatsApp. Nossa profissional vai te atender com carinho, tirar todas as suas dúvidas e encontrar o melhor horário para você.
       </p>
-      <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20no%20Studio%20A.J%20Lashes!" class="btn-agendar" target="_blank">
+      <a href="https://wa.me/556892474939?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20no%20Studio%20A.J%20Lashes!" class="btn-agendar" target="_blank" rel="noopener noreferrer">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Agendar pelo WhatsApp
       </a>
@@ -1351,7 +1412,7 @@
   <div class="footer-top">
     <div>
       <div class="footer-logo">Studio A.J Lashes</div>
-      <div class="footer-tagline">Cílios &amp; Sobrancelhas · Xapuri – AC</div>
+      <div class="footer-tagline">Cílios &amp; Sobrancelhas · Rio Branco – AC</div>
     </div>
     <nav class="footer-links">
       <a href="#cilios">Cílios</a>
@@ -1361,7 +1422,7 @@
       <a href="#agendamento">Agendar</a>
     </nav>
     <div class="footer-social">
-      <a href="https://instagram.com/studioa.jlashes" target="_blank">@studioa.jlashes</a>
+      <a href="https://instagram.com/studioa.jlashes" target="_blank" rel="noopener noreferrer">@studioa.jlashes</a>
     </div>
   </div>
   <div class="footer-bottom">
